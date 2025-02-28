@@ -1,7 +1,7 @@
 'use client';
 
 // import { urlFor } from '@/sanity/sanity-utils';
-import { CardImageBgProps } from '@/types/reuse';
+import { CardImageBgProps } from '@/types/reuse/index';
 import { Text } from '@radix-ui/themes';
 // import { PortableText } from 'next-sanity';
 import Image from 'next/image';
@@ -41,7 +41,7 @@ export function CardImageBg({ href, imageSrc, alt, title, tagline, excerpt, date
 							<h2 className="text-xl font-bold text-white">{title}</h2>
 							<p className="text-base text-gray-300">{tagline}</p>
 						</div>
-						<p className="text-xs text-gray-300">{date}</p>
+						<p className="text-xs text-gray-300">{date.toLocaleDateString()}</p>
 						<p>
 							{author}
 						</p>

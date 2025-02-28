@@ -17,6 +17,14 @@ export const jwtSecret = {
 	apiKey: getEnvironmentVariable("JWT_SECRET"),
 };
 
+export const tmdbApiKey = {
+	apiKey: getEnvironmentVariable("TMDB_API_KEY"),
+};
+
+export const tmdbApiUrl = {
+	apiKey: getEnvironmentVariable("TMDB_API_URL"),
+};
+
 // export const cloudinaryName = {
 // 	apiKey: getEnvironmentVariable("NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME"),
 // };
