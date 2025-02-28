@@ -7,26 +7,26 @@ export type CardImageBgProps = {
 	title?: string;
 	tagline?: string;
 	date: Date;
-	author: string;
+	author?: string;
 	excerpt: string;
 	// reuse: string;
 	className?: string;
 };
 
 export type MovieType = {
-	_id: string;
-	slug: string;
-	image: string;
-	alt?: string;
-	title: string;
-	tagline?: string;
-	releaseDate: Date;
+	_id: Movie['id'];
+	slug: Movie['title'];
+	image: Movie['posterPath'];
+	alt?: Movie['title'];
+	title: Movie['title'];
+	tagline?: Movie['overview'];
+	releaseDate: Movie['releaseDate'];
 	director: string;
 	excerpt: string;
 };
 
 export type MoviesProps = {
-	movies: MovieType[];
+	movies: Movie[];
 };
 
 export type LogoProps = {

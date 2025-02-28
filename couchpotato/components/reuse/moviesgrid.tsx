@@ -4,6 +4,9 @@
 
 import { MoviesProps } from '@/types/reuse/index';
 import {CardImageBg} from '@/components/reuse/cardimagebg';
+import { watchMovieUrl } from '@/constants/url';
+import { parseDate } from '@/lib/utils';
+import { tmdbImageUrl } from '@/env.config';
 
 
 export function MoviesGrid({ movies }: MoviesProps) {
@@ -14,15 +17,12 @@ export function MoviesGrid({ movies }: MoviesProps) {
 					console.log(movie);
 					return (
 						<CardImageBg
-							key={movie._id}
-							href={`/movies/${movie.slug}`}
-							imageSrc={movie.image}
-							alt={movie.alt || 'Movie poster'}
+							key={movie.id}
+							href={watchMovieUrl(movie.id.toString())}
+							imageSrc={`${tmdbImageUrl.apiKey}${movie.posterPath}`}
+							alt={movie.title}
 							title={movie.title}
-							tagline={movie.tagline}
-							date={movie.releaseDate}
-							author={movie.director}
-							excerpt={movie.excerpt}
+							date={parseDate(movie.releaseDate).date || new Date()}							excerpt={movie.overview} 
 							className='transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:brightness-50 group-hover:blur-sm'
 						/>
 					);

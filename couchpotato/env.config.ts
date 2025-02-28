@@ -25,6 +25,14 @@ export const tmdbApiUrl = {
 	apiKey: getEnvironmentVariable("TMDB_API_URL"),
 };
 
+export const tmdbImageUrl = {
+	apiKey: getEnvironmentVariable("TMDB_IMAGE_URL"),
+};
+
+export const tmdbMovieUrl = {
+	apiKey: getEnvironmentVariable("TMDB_MOVIE_URL"),
+};
+
 // export const cloudinaryName = {
 // 	apiKey: getEnvironmentVariable("NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME"),
 // };
