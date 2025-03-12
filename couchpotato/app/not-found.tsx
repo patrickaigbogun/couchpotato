@@ -1,6 +1,5 @@
 'use client';
 
-import { baseUrl } from "@/constants/url";
 import { House, WarningCircle } from "@phosphor-icons/react";
 import { Heading, Text, Container, Flex, Button, Strong, IconButton } from "@radix-ui/themes";
 import Link from 'next/link';
@@ -16,7 +15,7 @@ export default function NotFound() {
 				<Text size="5" className="text-gray-500 text-center mb-6">
 					Oops! The page you&apos;re looking for doesn&apos;t exist.
 				</Text>
-				<Link href={`${baseUrl}`}><Button size={'3'} variant="classic">
+				<Link href={'/'}><Button size={'3'} variant="classic">
 					<House weight="bold" size={24} /><Strong >Return Home</Strong>
 				</Button>
 				</Link>

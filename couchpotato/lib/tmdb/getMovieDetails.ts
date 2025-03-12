@@ -1,10 +1,10 @@
 import { getMovieUrl } from "@/constants/url"
-import { tmdbApiKey, tmdbApiUrl } from "@/env.config"
+import { TMDB } from "@/env.config"
 import { MovieDetails } from "@/types/tmdb/movie"
 
 
 export async function getMovieDetails(id: string): Promise<MovieDetails> {
-  if (!tmdbApiUrl.apiKey) {
+  if (!TMDB.apiKey) {
     throw new Error('TMDB_API_KEY is not defined')
   }
 
@@ -22,7 +22,7 @@ export async function getMovieDetails(id: string): Promise<MovieDetails> {
 
     // Fetch cast details
     const creditsResponse = await fetch(
-      `${tmdbApiUrl.apiKey}/movie/${id}/credits?api_key=${tmdbApiKey.apiKey}&language=en-US`,
+      `${TMDB.apiUrl}/movie/${id}/credits?api_key=${TMDB.apiKey}&language=en-US`,
       { next: { revalidate: 3600 } }
     )
 

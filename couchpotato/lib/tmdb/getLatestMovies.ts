@@ -1,13 +1,13 @@
 import { Movie, MovieResponse } from '@/types/tmdb/movie';
-import { tmdbApiKey, tmdbApiUrl } from '@/env.config';
+import { TMDB } from '@/env.config';
 
 export async function getLatestMovies(page: number = 1): Promise<MovieResponse> {
-  if (!tmdbApiKey.apiKey) {
+  if (!TMDB.apiKey) {
     throw new Error('TMDB API key is not configured');
   }
 
   const response = await fetch(
-    `${tmdbApiUrl.apiKey}/movie/now_playing?api_key=${tmdbApiKey.apiKey}&language=en-US&page=${page}`,
+    `${TMDB.apiUrl}/movie/now_playing?api_key=${TMDB.apiKey}&language=en-US&page=${page}`,
     // { next: { revalidate: 3600 } } // Cache for 1 hour
   );
 

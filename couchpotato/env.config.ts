@@ -1,37 +1,32 @@
-const getEnvironmentVariable = (environmentVariable: string): string => {
-	const unvalidatedEnvironmentVariable = process.env[environmentVariable];
-	if (!unvalidatedEnvironmentVariable) {
-		throw new Error(
-			`Couldn't find environment variable: ${environmentVariable}`
-		);
-	} else {
-		return unvalidatedEnvironmentVariable;
+const getEnvVar = (key: string, required: boolean = true): string => {
+	const value = process.env[key];
+	if (required && !value) {
+		throw new Error(`Missing required environment variable: ${key}`);
 	}
+	return value ?? '';
 };
 
-export const neonDbUrl = {
-	apiKey: getEnvironmentVariable("NEON_DATABASE_URL"),
-};
+// TMDB Configuration (Client-side accessible)
+export const TMDB = {
+	apiKey: getEnvVar('NEXT_PUBLIC_TMDB_API_KEY'),
+	apiUrl: getEnvVar('NEXT_PUBLIC_TMDB_API_URL'),
+	imageUrl: getEnvVar('NEXT_PUBLIC_TMDB_IMAGE_URL'),
+	movieUrl: getEnvVar('NEXT_PUBLIC_TMDB_MOVIE_URL'),
+	bearerToken: getEnvVar('NEXT_PUBLIC_TMDB_BEARER_TOKEN'),
+} as const;
 
-export const jwtSecret = {
-	apiKey: getEnvironmentVariable("JWT_SECRET"),
-};
+// Server-side only configurations
+export const DATABASE = {
+	get url() {
+		return getEnvVar('NEON_DATABASE_URL');
+	}
+} as const;
 
-export const tmdbApiKey = {
-	apiKey: getEnvironmentVariable("TMDB_API_KEY"),
-};
-
-export const tmdbApiUrl = {
-	apiKey: getEnvironmentVariable("TMDB_API_URL"),
-};
-
-export const tmdbImageUrl = {
-	apiKey: getEnvironmentVariable("TMDB_IMAGE_URL"),
-};
-
-export const tmdbMovieUrl = {
-	apiKey: getEnvironmentVariable("TMDB_MOVIE_URL"),
-};
+export const AUTH = {
+	get jwtSecret() {
+		return getEnvVar('JWT_SECRET');
+	}
+} as const;
 
 // export const cloudinaryName = {
 // 	apiKey: getEnvironmentVariable("NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME"),

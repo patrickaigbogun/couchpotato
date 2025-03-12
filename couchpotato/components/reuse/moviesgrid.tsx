@@ -6,7 +6,7 @@ import { MoviesProps } from '@/types/reuse/index';
 import {CardImageBg} from '@/components/reuse/cardimagebg';
 import { watchMovieUrl } from '@/constants/url';
 import { parseDate } from '@/lib/utils';
-import { tmdbImageUrl } from '@/env.config';
+import { TMDB } from '@/env.config';
 
 
 export function MoviesGrid({ movies }: MoviesProps) {
@@ -19,7 +19,7 @@ export function MoviesGrid({ movies }: MoviesProps) {
 						<CardImageBg
 							key={movie.id}
 							href={watchMovieUrl(movie.id.toString())}
-							imageSrc={`${tmdbImageUrl.apiKey}${movie.posterPath}`}
+							imageSrc={`${TMDB.imageUrl}${movie.posterPath}`}
 							alt={movie.title}
 							title={movie.title}
 							date={parseDate(movie.releaseDate).date || new Date()}							excerpt={movie.overview} 

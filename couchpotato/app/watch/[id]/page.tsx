@@ -7,13 +7,12 @@ import * as Collapsible from '@radix-ui/react-collapsible'
 import { Star, Bookmark, X } from "@phosphor-icons/react"
 import { Content } from '@/types/tmdb/movie'
 import { getMovieDetails } from '@/lib/tmdb/getMovieDetails'
-
-
+import { availableSources } from '@/constants/sources'
 
 export default function WatchPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = use(params)
 	const [content, setContent] = useState<Content | null>(null)
-	const [selectedSource, setSelectedSource] = useState('source1')
+	const [selectedSource, setSelectedSource] = useState('multiembed')
 	const [watchLater, setWatchLater] = useState<Content[]>([])
 	const [showWatchLater, setShowWatchLater] = useState(false)
 
@@ -47,6 +46,10 @@ export default function WatchPage({ params }: { params: Promise<{ id: string }> 
 		)
 	}
 
+	// Get the current source URL
+	const currentSource = availableSources.find(source => source.id === selectedSource)
+	const videoUrl = currentSource?.urls.movie.replace('{id}', id)
+
 	return (
 		<div className="min-h-screen bg-gray-900">
 			{/* Backdrop */}
@@ -70,11 +73,13 @@ export default function WatchPage({ params }: { params: Promise<{ id: string }> 
 						{/* Video Player */}
 						<div className="bg-gray-800 rounded-lg overflow-hidden">
 							<div className="relative pt-[56.25%]">
-								<iframe
-									src={`/embed/${selectedSource}/${id}`}
-									className="absolute inset-0 w-full h-full"
-									allowFullScreen
-								/>
+								{videoUrl && (
+									<iframe
+										src={videoUrl}
+										className="absolute inset-0 w-full h-full"
+										allowFullScreen
+									/>
+								)}
 								<button
 									onClick={() => {/* Toggle watch later */ }}
 									className="absolute top-2 right-2 p-2 bg-black/50 rounded-full hover:bg-purple-600 transition-colors"
@@ -102,11 +107,39 @@ export default function WatchPage({ params }: { params: Promise<{ id: string }> 
 									</Tabs.Trigger>
 								</Tabs.List>
 
-								<Tabs.Content value="english" className="space-y-2">
-									{/* English source buttons */}
+								<Tabs.Content value="english" className="space-y-2 grid grid-cols-2 md:grid-cols-3 gap-2">
+									{availableSources
+										.filter(source => !source.isFrench)
+										.map(source => (
+											<button
+												key={source.id}
+												onClick={() => setSelectedSource(source.id)}
+												className={`px-4 py-2 rounded-lg transition-colors ${
+													selectedSource === source.id 
+														? 'bg-purple-600 text-white' 
+														: 'bg-gray-700 hover:bg-gray-600'
+												}`}
+											>
+												{source.name}
+											</button>
+										))}
 								</Tabs.Content>
-								<Tabs.Content value="french" className="space-y-2">
-									{/* French source buttons */}
+								<Tabs.Content value="french" className="space-y-2 grid grid-cols-2 md:grid-cols-3 gap-2">
+									{availableSources
+										.filter(source => source.isFrench)
+										.map(source => (
+											<button
+												key={source.id}
+												onClick={() => setSelectedSource(source.id)}
+												className={`px-4 py-2 rounded-lg transition-colors ${
+													selectedSource === source.id 
+														? 'bg-purple-600 text-white' 
+														: 'bg-gray-700 hover:bg-gray-600'
+												}`}
+											>
+												{source.name}
+											</button>
+										))}
 								</Tabs.Content>
 							</Tabs.Root>
 						</div>

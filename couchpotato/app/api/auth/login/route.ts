@@ -4,7 +4,7 @@ import { db } from '@/constants/db';
 import { users } from '@/db/schema/schema';
 import { eq } from 'drizzle-orm';
 import jwt from 'jsonwebtoken';
-import { jwtSecret } from '@/env.config';
+import { AUTH } from '@/env.config';
 import { LoginCredentials, UserResponse } from '@/types/user';
 
 /**
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
         // Create JWT token
         const token = jwt.sign(
             { userId: user.id },
-            jwtSecret.apiKey,
+            AUTH.jwtSecret,
             { expiresIn: '24h' }
         );
 
