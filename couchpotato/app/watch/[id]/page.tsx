@@ -8,6 +8,7 @@ import { Star, Bookmark, X } from "@phosphor-icons/react"
 import { Content } from '@/types/tmdb/movie'
 import { getMovieDetails } from '@/lib/tmdb/getMovieDetails'
 import { availableSources } from '@/constants/sources'
+import { TMDB } from '@/constants/tmdb'
 
 export default function WatchPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = use(params)
@@ -185,7 +186,7 @@ export default function WatchPage({ params }: { params: Promise<{ id: string }> 
 									{content.cast.slice(0, 6).map((actor) => (
 										<div key={actor.id} className="flex items-center gap-3">
 											<img
-												src={actor.profilePath || '/placeholder-avatar.png'}
+												src={ `${TMDB.imageUrl}${actor.profilePath}` || '/placeholder-avatar.png'}
 												alt={actor.name}
 												className="w-12 h-12 rounded-full object-cover"
 											/>

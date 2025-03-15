@@ -16,5 +16,7 @@ export const watchMovieUrl = (movieId: string): string => `${watchUrl}${movieId}
 
 export const getMovieUrl = (movieId: string): string => `${TMDB.movieUrl}${movieId}?api_key=${TMDB.apiKey}&language=en-US`
 
+export const getCreditsUrl = (movieId: string): string => `${TMDB.movieUrl}${movieId}/credits?api_key=${TMDB.apiKey}&language=en-US`
+
 
 

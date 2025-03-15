@@ -1,9 +1,12 @@
-export const getEnvVar = (key: string, required: boolean = true): string => {
-	const value = process.env[key];
-	if (required && !value) {
-		throw new Error(`Missing required environment variable: ${key}`);
+export const getEnvironmentVariable = (environmentVariable: string): string => {
+	const unvalidatedEnvironmentVariable = process.env[environmentVariable];
+	if (!unvalidatedEnvironmentVariable) {
+		throw new Error(
+			`Couldn't find environment variable: ${environmentVariable}`
+		);
+	} else {
+		return unvalidatedEnvironmentVariable;
 	}
-	return value ?? '';
 };
 
 // TMDB Configuration (Client-side accessible)
@@ -12,12 +15,12 @@ export const getEnvVar = (key: string, required: boolean = true): string => {
 // Server-side only configurations
 export const DATABASE = {
 	get url() {
-		return getEnvVar('NEON_DATABASE_URL');
+		return getEnvironmentVariable('NEON_DATABASE_URL');
 	}
 } as const;
 
 export const AUTH = {
 	get jwtSecret() {
-		return getEnvVar('JWT_SECRET');
+		return getEnvironmentVariable('JWT_SECRET');
 	}
 } as const;
