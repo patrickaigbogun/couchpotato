@@ -1,5 +1,5 @@
 import { Movie, MovieResponse } from '@/types/tmdb/movie';
-import { TMDB } from '@/env.config';
+import { TMDB } from '@/constants/tmdb';
 
 export async function getLatestMovies(page: number = 1): Promise<MovieResponse> {
   if (!TMDB.apiKey) {

@@ -6,7 +6,7 @@ import { MoviesProps } from '@/types/reuse/index';
 import {CardImageBg} from '@/components/reuse/cardimagebg';
 import { watchMovieUrl } from '@/constants/url';
 import { parseDate } from '@/lib/utils';
-import { TMDB } from '@/env.config';
+import { TMDB } from '@/constants/tmdb';
 
 
 export function MoviesGrid({ movies }: MoviesProps) {

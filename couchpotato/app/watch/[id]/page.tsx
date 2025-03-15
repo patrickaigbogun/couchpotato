@@ -71,7 +71,7 @@ export default function WatchPage({ params }: { params: Promise<{ id: string }> 
 					{/* Video Player Column */}
 					<div className="lg:col-span-2 space-y-6">
 						{/* Video Player */}
-						<div className="bg-gray-800 rounded-lg overflow-hidden">
+						{/* <div className="bg-gray-800 rounded-lg overflow-hidden">
 							<div className="relative pt-[56.25%]">
 								{videoUrl && (
 									<iframe
@@ -81,13 +81,13 @@ export default function WatchPage({ params }: { params: Promise<{ id: string }> 
 									/>
 								)}
 								<button
-									onClick={() => {/* Toggle watch later */ }}
+									onClick={() => {/* Toggle watch later  }}
 									className="absolute top-2 right-2 p-2 bg-black/50 rounded-full hover:bg-purple-600 transition-colors"
 								>
 									<Bookmark />
 								</button>
 							</div>
-						</div>
+						</div> */}
 
 						{/* Source Selector */}
 						<div className="bg-gray-800 rounded-lg p-6">
@@ -114,11 +114,10 @@ export default function WatchPage({ params }: { params: Promise<{ id: string }> 
 											<button
 												key={source.id}
 												onClick={() => setSelectedSource(source.id)}
-												className={`px-4 py-2 rounded-lg transition-colors ${
-													selectedSource === source.id 
-														? 'bg-purple-600 text-white' 
+												className={`px-4 py-2 rounded-lg transition-colors ${selectedSource === source.id
+														? 'bg-purple-600 text-white'
 														: 'bg-gray-700 hover:bg-gray-600'
-												}`}
+													}`}
 											>
 												{source.name}
 											</button>
@@ -131,11 +130,10 @@ export default function WatchPage({ params }: { params: Promise<{ id: string }> 
 											<button
 												key={source.id}
 												onClick={() => setSelectedSource(source.id)}
-												className={`px-4 py-2 rounded-lg transition-colors ${
-													selectedSource === source.id 
-														? 'bg-purple-600 text-white' 
+												className={`px-4 py-2 rounded-lg transition-colors ${selectedSource === source.id
+														? 'bg-purple-600 text-white'
 														: 'bg-gray-700 hover:bg-gray-600'
-												}`}
+													}`}
 											>
 												{source.name}
 											</button>

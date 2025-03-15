@@ -4,8 +4,10 @@ import { db } from '@/constants/db';
 import { users } from '@/db/schema/schema';
 import { eq } from 'drizzle-orm';
 import jwt from 'jsonwebtoken';
-import { jwtSecret } from '@/env.config';
 import { User, UserResponse } from '@/types/user';
+import { jwtSecret } from '@/constants/auth';
+
+
 
 /**
  * User Registration API Route
@@ -96,7 +98,7 @@ export async function POST(request: Request) {
 		// Create JWT token
 		const token = jwt.sign(
 			{ userId: newUser.id },
-			jwtSecret.apiKey,
+			jwtSecret,
 			{ expiresIn: '24h' }
 		);
 

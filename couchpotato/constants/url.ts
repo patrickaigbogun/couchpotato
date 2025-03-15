@@ -1,4 +1,4 @@
-import { TMDB } from "@/env.config";
+import { TMDB } from "@/constants/tmdb";
 
 export const baseUrl = `http://localhost:3000/`;
 
@@ -14,7 +14,7 @@ export const watchUrl = `${baseUrl}watch/`
 
 export const watchMovieUrl = (movieId: string): string => `${watchUrl}${movieId}`
 
-export const getMovieUrl = (movieId: string): string => `${TMDB.movieUrl}${movieId}?language=en-US`
+export const getMovieUrl = (movieId: string): string => `${TMDB.movieUrl}${movieId}?api_key=${TMDB.apiKey}&language=en-US`
 
 
 
