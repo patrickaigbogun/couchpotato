@@ -9,6 +9,7 @@ import { Content } from '@/types/tmdb/movie'
 import { getMovieDetails } from '@/lib/tmdb/getMovieDetails'
 import { availableSources } from '@/constants/sources'
 import { TMDB } from '@/constants/tmdb'
+import { Avatar } from '@radix-ui/themes'
 
 export default function WatchPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = use(params)
@@ -185,11 +186,13 @@ export default function WatchPage({ params }: { params: Promise<{ id: string }> 
 								<div className="grid grid-cols-2 gap-4">
 									{content.cast.slice(0, 6).map((actor) => (
 										<div key={actor.id} className="flex items-center gap-3">
-											<img
-												src={ `${TMDB.imageUrl}${actor.profilePath}` || '/placeholder-avatar.png'}
+											<Avatar
+												src={`${TMDB.imageUrl}${actor.profilePath}`}
 												alt={actor.name}
-												className="w-12 h-12 rounded-full object-cover"
-											/>
+												fallback={actor.name}
+												size={'5'}
+												>	
+											</Avatar>
 											<div>
 												<p className="font-medium">{actor.name}</p>
 												<p className="text-sm text-gray-400">{actor.character}</p>
