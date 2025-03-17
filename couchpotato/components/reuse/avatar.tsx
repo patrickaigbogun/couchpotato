@@ -2,7 +2,7 @@ import { LogoProps } from "@/types/reuse/index";
 import Image from "next/image";
 
 
-export function SingleLogo({ src, size = "100vw", alt, w, h }: LogoProps) {
+export function SingleAvatar({ src, size = "100vw", alt, w, h }: LogoProps) {
 	return (
 		<Image 
 			className="object-cover" 
@@ -16,7 +16,7 @@ export function SingleLogo({ src, size = "100vw", alt, w, h }: LogoProps) {
 	)
 }
 
-export function MultiLogo({ src, size = "100vw", alt, w, h }: LogoProps) {
+export function MultiAvatar({ src, size = "100vw", alt, w, h }: LogoProps) {
 	return (
 		<div className="flex flex-row gap-x-3">
 			{[0, 1].map((index) => (

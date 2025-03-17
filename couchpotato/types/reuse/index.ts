@@ -1,3 +1,4 @@
+import { CardProps } from "@radix-ui/themes";
 import { Movie } from "../tmdb/movie";
 
 export type CardImageBgProps = {
@@ -11,6 +12,8 @@ export type CardImageBgProps = {
 	excerpt: string;
 	// reuse: string;
 	className?: string;
+	size:CardProps['size'];
+	variant: CardProps['variant']
 };
 
 export type MovieType = {

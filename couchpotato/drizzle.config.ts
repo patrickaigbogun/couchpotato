@@ -1,10 +1,10 @@
 import { defineConfig } from 'drizzle-kit';
-import { neonDbUrl } from './env.config';
+import { neonDbUrl } from '@/constants/db';
 export default defineConfig({
 	out: './db/drizzle',
 	schema: './db/schema/schema.ts',
 	dialect: 'postgresql',
 	dbCredentials: {
-		url: neonDbUrl.apiKey,
+		url: neonDbUrl,
 	},
 });
