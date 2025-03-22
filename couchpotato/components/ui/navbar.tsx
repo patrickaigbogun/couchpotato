@@ -1,5 +1,6 @@
 import { Avatar } from "@radix-ui/themes";
 import { SingleAvatar } from "../reuse/avatar";
+import { ProfileButton } from "../reuse/buttons";
 
 function Navbar() {
     return (
@@ -12,7 +13,7 @@ function Navbar() {
                     <li>some things</li>
                 </ul>
             </nav>
-            <Avatar fallback={'PA'} />
+           <ProfileButton/>
         </div>
     );
 }

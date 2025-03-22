@@ -46,7 +46,6 @@ export type XButtonProps = {
 	className?: string;
 };
 
-const router = useRouter();
 
 export function LinkButtonX({
 	href,
@@ -120,11 +119,16 @@ export function IconButtonX({
 }
 
 export function ProfileButton() {
-	<Button
-		variant="surface"
-		size={"3"}
-		onClick={() => router.push("/auth/login")}>
-		Login
-		<UserCircleDashed size={32} />
-	</Button>;
+	const router = useRouter();
+	return (
+		<Button
+		color={'bronze'}
+			variant={'solid'}
+			size={"3"}
+			onClick={() => router.push("/auth/login")}
+			highContrast>
+			Login
+			<UserCircleDashed size={32} />
+		</Button>
+	);
 }

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
+import { Box, Theme } from "@radix-ui/themes";
 import "./globals.css";
+import Navbar from "@/components/ui/navbar";
 
 
 export const metadata: Metadata = {
@@ -17,10 +18,13 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={` antialiased`}
+				className={` antialiased bg-black`}
 			>
 				<Theme accentColor={'plum'} grayColor={'olive'} radius={'full'} scaling="95%" >
-					{children}
+					<Navbar />
+					<Box my={'9'} >
+						{children}
+					</Box>
 				</Theme>
 			</body>
 		</html>
