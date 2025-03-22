@@ -12,7 +12,7 @@ export async function getLatestAnime(page: number = 1): Promise<MovieResponse> {
 
   // Fetch movies with the anime keyword
   const response = await fetch(
-    `${TMDB.apiUrl}/discover/movie?api_key=${TMDB.apiKey}&with_keywords=${ANIME_KEYWORD_ID}&language=en-US&sort_by=primary_release_date.desc&page=${page}`,
+    `${TMDB.apiUrl}discover/movie?api_key=${TMDB.apiKey}&with_keywords=${ANIME_KEYWORD_ID}&language=en-US&sort_by=primary_release_date.desc&page=${page}`,
     // { next: { revalidate: 3600 } } // Cache for 1 hour
   );
 

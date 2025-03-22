@@ -7,7 +7,7 @@ export async function getLatestMovies(page: number = 1): Promise<MovieResponse> 
   }
 
   const response = await fetch(
-    `${TMDB.apiUrl}/movie/now_playing?api_key=${TMDB.apiKey}&language=en-US&page=${page}`,
+    `${TMDB.apiUrl}movie/now_playing?api_key=${TMDB.apiKey}&language=en-US&page=${page}`,
     // { next: { revalidate: 3600 } } // Cache for 1 hour
   );
 
