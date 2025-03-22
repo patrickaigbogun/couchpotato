@@ -62,7 +62,7 @@ export function CardImageBg({
 						className={` text-gray-100 text-base ease-in-out transition-all duration-500 ${
 							isHovered ? "block " : "hidden"
 						}`}>
-						<Text>{excerpt}</Text>
+						<Text size={'2'} className="line-clamp-3" >{excerpt}</Text>
 					</div>
 				</div>
 			</Card>
