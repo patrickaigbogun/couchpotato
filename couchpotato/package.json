@@ -24,6 +24,7 @@
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-toastify": "^10.0.6",
     "tsparticles": "^3.8.1",
     "vyrn": "^3.0.8"
   },
