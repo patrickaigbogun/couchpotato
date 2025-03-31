@@ -7,8 +7,6 @@ import jwt from 'jsonwebtoken';
 import { User, UserResponse } from '@/types/user';
 import { jwtSecret } from '@/constants/auth';
 
-
-
 /**
  * User Registration API Route
  * 
@@ -111,7 +109,21 @@ export async function POST(request: Request) {
 			message: 'User registered successfully',
 		};
 
-		return NextResponse.json(response, { status: 201 });
+		// Create a response object
+		const jsonResponse = NextResponse.json(response, { status: 201 });
+		
+		// Set the JWT token in an HttpOnly cookie
+		jsonResponse.cookies.set({
+			name: 'auth_token',
+			value: token,
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production', // Secure in production
+			sameSite: 'strict',
+			maxAge: 60 * 60 * 24, // 24 hours in seconds
+			path: '/',
+		});
+
+		return jsonResponse;
 	} catch (error) {
 		console.error('Registration error:', error);
 		return NextResponse.json(

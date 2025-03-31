@@ -84,7 +84,21 @@ export async function POST(request: Request) {
             message: 'Login successful'
         };
 
-        return NextResponse.json(response, { status: 200 });
+        // Create a response object
+        const jsonResponse = NextResponse.json(response, { status: 200 });
+        
+        // Set the JWT token in an HttpOnly cookie
+        jsonResponse.cookies.set({
+            name: 'auth_token',
+            value: token,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // Secure in production
+            sameSite: 'strict',
+            maxAge: 60 * 60 * 24, // 24 hours in seconds
+            path: '/',
+        });
+
+        return jsonResponse;
     } catch (error) {
         console.error('Login error:', error);
         return NextResponse.json(
