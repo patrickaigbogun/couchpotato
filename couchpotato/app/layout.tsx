@@ -27,7 +27,7 @@ export default function RootLayout({
 				<Theme accentColor={'plum'} grayColor={'olive'} radius={'full'} scaling="95%" >
 					<ToastProvider>
 						<Navbar />
-						<Box my={'9'} >
+						<Box className="mt-32" >
 							{children}
 						</Box>
 					</ToastProvider>
