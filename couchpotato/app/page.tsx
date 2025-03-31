@@ -7,7 +7,7 @@ import { BgParticles } from '@/components/ui/particle';
 export default async function Home() {
 	const movies = await getLatestMovies();
 	return (
-		<Box className="min-h-screen w-full">
+		<Box>
 			<BgParticles />
 			<Container my={'9'}>
 				<Suspense fallback={<div>Loading...</div>}>
