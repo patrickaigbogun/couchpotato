@@ -1,6 +1,7 @@
 import { Avatar } from "@radix-ui/themes";
 import { SingleAvatar } from "../reuse/avatar";
 import { ProfileButton } from "../reuse/buttons";
+import ThemeSwitch from "./themeswitcht";
 
 function Navbar() {
     return (
@@ -13,7 +14,8 @@ function Navbar() {
                     <li>some things</li>
                 </ul>
             </nav>
-           <ProfileButton/>
+           {/* <ProfileButton/> */}
+           <ThemeSwitch/>
         </div>
     );
 }

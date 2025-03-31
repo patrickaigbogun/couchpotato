@@ -2,9 +2,9 @@ import { LogoProps } from "@/types/reuse/index";
 import Image from "next/image";
 
 
-export function SingleAvatar({ src, size = "100vw", alt, w, h }: LogoProps) {
+export function SingleAvatar({ src, size, alt, w, h}: LogoProps) {
 	return (
-		<Image 
+			<Image 
 			className="object-cover" 
 			src={src} 
 			sizes={size} 

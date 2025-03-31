@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import "@radix-ui/themes/styles.css";
+import { ThemeProvider } from 'next-themes'
 import { Box, Theme } from "@radix-ui/themes";
+import ToastProvider from "@/components/providers/toast_provider";
+import 'react-toastify/dist/ReactToastify.css';
+import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import Navbar from "@/components/ui/navbar";
 
@@ -16,16 +19,20 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body
 				className={` antialiased bg-black`}
 			>
+				<ThemeProvider>
 				<Theme accentColor={'plum'} grayColor={'olive'} radius={'full'} scaling="95%" >
-					<Navbar />
-					<Box my={'9'} >
-						{children}
-					</Box>
+					<ToastProvider>
+						<Navbar />
+						<Box my={'9'} >
+							{children}
+						</Box>
+					</ToastProvider>
 				</Theme>
+				</ThemeProvider>
 			</body>
 		</html>
 	);
