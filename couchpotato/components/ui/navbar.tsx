@@ -16,7 +16,7 @@ function Navbar() {
 
     return (
         <>
-            <div className="flex flex-row justify-between py-2 px-4 md:px-7 fixed top-0 z-30 w-full bg-stone/30 text-gray-500 dark:text-gray-100 backdrop-blur-md overflow-hidden">
+            <div className="flex flex-row justify-between py-1 px-4 md:px-7 fixed top-0 z-30 w-full bg-stone/30 text-gray-500 dark:text-gray-100 backdrop-blur-md overflow-hidden">
                 {/* Logo */}
                 <SingleAvatar src={'/couchpotato_icon.png'} alt={"couchpotato logo"} size={"3"} w={75} h={75} />
 

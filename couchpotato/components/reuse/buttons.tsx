@@ -125,6 +125,7 @@ export function ProfileButton({ compact = false }) {
 			color={'bronze'}
 			variant={'solid'}
 			size={"3"}
+			className="py-6"
 			onClick={() => router.push("/auth/login")}
 			highContrast>
 			{compact ? (
