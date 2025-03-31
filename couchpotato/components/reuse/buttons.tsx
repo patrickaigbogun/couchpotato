@@ -1,7 +1,7 @@
 "use client";
 
 import { IconProps, IconWeight, UserCircleDashed } from "@phosphor-icons/react";
-import { Button, IconButton } from "@radix-ui/themes";
+import { Button, IconButton, Avatar, Text } from "@radix-ui/themes";
 import { BaseButtonProps } from "@radix-ui/themes/src/components/base-button.jsx";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
@@ -118,17 +118,33 @@ export function IconButtonX({
 	);
 }
 
-export function ProfileButton() {
+export function ProfileButton({ compact = false }) {
 	const router = useRouter();
 	return (
 		<Button
-		color={'bronze'}
+			color={'bronze'}
 			variant={'solid'}
 			size={"3"}
 			onClick={() => router.push("/auth/login")}
 			highContrast>
-			Login
-			<UserCircleDashed size={32} />
+			{compact ? (
+				<Avatar
+					size="1"
+					src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453"
+					fallback="A"
+					radius="full"
+				/>
+			) : (
+				<>
+					<Avatar
+						size="2"
+						src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453"
+						fallback="A"
+						radius="full"
+					/>
+					<Text>Hello, Oti</Text>
+				</>
+			)}
 		</Button>
 	);
 }
