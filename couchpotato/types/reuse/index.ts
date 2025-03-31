@@ -33,6 +33,7 @@ export type MoviesProps = {
 };
 
 export type LogoProps = {
+	href?: string;
     src:string;
     alt:string;
     size:string;
