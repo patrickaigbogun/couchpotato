@@ -15,7 +15,7 @@ export interface TVShow {
     vote_count: number;
   }
   
-  export interface AiringTodayResponse {
+  export interface TVShowsResponse {
     page: number;
     results: TVShow[];
     total_pages: number;
