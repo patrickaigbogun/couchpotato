@@ -21,7 +21,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body
-				className={` antialiased bg-black`}
+				className={''}
 			>
 				<ThemeProvider>
 				<Theme accentColor={'plum'} grayColor={'olive'} radius={'full'} scaling="95%" >
