@@ -9,7 +9,7 @@ export interface User {
 }
 
 export interface UserResponse {
-	user: Omit<User, "password">;
+	user: Omit<User, "password" | "id" | "email">;
 	token: string;
 	message?: string;
 }

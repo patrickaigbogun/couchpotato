@@ -92,7 +92,6 @@ export async function POST(request: Request) {
 			})
 			.returning({
 				id: users.id,
-				email: users.email,
 				username: users.username,
 				role: users.role, // Return the role in the response
 			});
@@ -110,9 +109,7 @@ export async function POST(request: Request) {
 		const response: UserResponse = {
 			user: {
 				username: newUser.username,
-				email: newUser.email,
 				role: newUser.role, // Include role in the response
-				id: newUser.id,
 			},
 			token,
 			message: 'User registered successfully',
