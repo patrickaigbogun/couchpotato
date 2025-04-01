@@ -17,7 +17,7 @@ import { LoginCredentials, UserResponse } from '@/types/user';
  * 
  * Request Body:
  * {
- *   email: string    - User's email address
+ *   username: string - User's username
  *   password: string - User's password
  * }
  * 
@@ -47,18 +47,18 @@ export async function POST(request: Request) {
         const credentials: LoginCredentials = await request.json();
 
         // Validate input
-        if (!credentials.email || !credentials.password) {
+        if (!credentials.username || !credentials.password) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
                 { status: 400 }
             );
         }
 
-        // Find user by email
+        // Find user by username
         const [user] = await db
             .select()
             .from(users)
-            .where(eq(users.email, credentials.email));
+            .where(eq(users.username, credentials.username));
 
         // Check if user exists and verify password
         if (!user || !(await bcrypt.compare(credentials.password, user.password))) {

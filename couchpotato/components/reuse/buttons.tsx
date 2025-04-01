@@ -44,6 +44,7 @@ export type XButtonProps = {
 	size?: BaseButtonProps["size"];
 	onClick?: BaseButtonProps["onClick"];
 	className?: string;
+	disabled?: boolean;
 };
 
 
@@ -80,6 +81,7 @@ export function ButtonX({
 	icon: Icon,
 	type,
 	className,
+	disabled
 }: XButtonProps) {
 	return (
 		<Button
@@ -87,7 +89,8 @@ export function ButtonX({
 			variant={variant}
 			type={type}
 			size={"3"}
-			className={className}>
+			className={className}
+			disabled ={disabled}>
 			<Icon size={24} weight={weight} />
 			{children}
 		</Button>

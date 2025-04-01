@@ -28,7 +28,8 @@ import { jwtSecret } from '@/constants/auth';
  *     user: {
  *       id: number,
  *       email: string,
- *       username: string
+ *       username: string,
+ *       role: string
  *     },
  *     token: string,
  *     message: "User registered successfully"
@@ -46,6 +47,7 @@ import { jwtSecret } from '@/constants/auth';
  * - Password hashing using bcrypt (10 rounds)
  * - Duplicate email/username checking
  * - Input validation
+ * - Default user role assignment
  */
 
 export async function POST(request: Request) {
@@ -79,23 +81,28 @@ export async function POST(request: Request) {
 		// Hash password
 		const hashedPassword = await bcrypt.hash(user.password, 10);
 
-		// Insert new user
+		// Insert new user with explicit role assignment
 		const [newUser] = await db
 			.insert(users)
 			.values({
 				email: user.email,
 				password: hashedPassword,
 				username: user.username,
+				role: 'user', // Explicitly setting role to 'user' for all new registrations
 			})
 			.returning({
 				id: users.id,
 				email: users.email,
 				username: users.username,
+				role: users.role, // Return the role in the response
 			});
 
 		// Create JWT token
 		const token = jwt.sign(
-			{ userId: newUser.id },
+			{ 
+				userId: newUser.id,
+				role: newUser.role // Include role in JWT token for authorization purposes
+			},
 			jwtSecret,
 			{ expiresIn: '24h' }
 		);
@@ -104,6 +111,8 @@ export async function POST(request: Request) {
 			user: {
 				username: newUser.username,
 				email: newUser.email,
+				role: newUser.role, // Include role in the response
+				id: newUser.id,
 			},
 			token,
 			message: 'User registered successfully',

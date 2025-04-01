@@ -2,11 +2,12 @@
 
 import { profileUrl } from "@/constants/url";
 import { CaretCircleDoubleDown, SignIn, CaretCircleDoubleRight } from "@phosphor-icons/react";
-import { Badge, Heading, Text, Box, Card, Flex } from "@radix-ui/themes";
+import { Badge, Heading, Text, Box, Card, Flex, Link } from "@radix-ui/themes";
 import { Form } from "radix-ui";
 import { useState, FormEvent } from "react";
 import { UserResponse } from "@/types/user";
 import { ButtonX } from "@/components/reuse/buttons";
+import { toast } from "react-toastify";
 
 interface LoginData {
     username: string;
@@ -27,13 +28,34 @@ export default function LoginPage() {
                 body: JSON.stringify({ username, password })
             });
             
+            const responseData = await response.json();
+            
             if (response.status === 200) {
-                const data: UserResponse = await response.json();
-                console.log(data);
+                toast.success(responseData.message || "Login successful!");
                 setStatus(true);
                 location.replace(profileUrl);
+            } else {
+                // Display appropriate error message based on status code
+                const errorMessage = responseData.error || "An error occurred during login";
+                
+                switch(response.status) {
+                    case 400:
+                        toast.error(errorMessage);
+                        break;
+                    case 401:
+                        toast.error("Invalid username or password");
+                        break;
+                    case 500:
+                        toast.error("Server error. Please try again later");
+                        break;
+                    default:
+                        toast.error(errorMessage);
+                }
+                
+                setStatus(false);
             }
         } catch (error) {
+            toast.error("Connection failed. Please check your network");
             setStatus(false);
         }
     };
@@ -50,6 +72,20 @@ export default function LoginPage() {
                     <Text as={'p'} color={'gray'} align={'center'} weight={'bold'}>
                         Log in to access your personalized learning experience and continue your educational journey.
                     </Text>
+                    
+                    {/* Added Forgot Password and Register links */}
+                    <Flex direction="column" gap="3" align="center">
+                        <Link href="/auth/recover" weight="bold" className="text-zinc-800 hover:text-bronze-9 transition-colors">
+                            Forgot Password?
+                        </Link>
+                        <Text as="p" weight="bold">
+                            Don't have an account?{' '}
+                            <Link href="/auth/register" weight="bold" className="text-zinc-800 hover:text-bronze-9 transition-colors">
+                                Register
+                            </Link>
+                        </Text>
+                    </Flex>
+                    
                     <ButtonX
                         colour='bronze'
                         variant="solid"
@@ -61,8 +97,8 @@ export default function LoginPage() {
                         children="swipe below"
                     />
                     <ButtonX
-                        colour="bronze"
-                        variant='outline'
+                        colour='bronze'
+                        variant='solid'
                         weight="duotone"
                         icon={CaretCircleDoubleRight}
                         size="3"

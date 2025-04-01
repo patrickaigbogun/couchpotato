@@ -10,7 +10,7 @@ export default async function Home() {
 	return (
 		<Box>
 			<BgParticles />
-			<Container>
+			<Container className='my-32' >
 				<Suspense fallback={<LoadingCards/>}>
 					<MoviesGrid movies={movies.results} />
 				</Suspense>
