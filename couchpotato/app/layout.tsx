@@ -5,7 +5,7 @@ import ToastProvider from "@/components/providers/toast_provider";
 import 'react-toastify/dist/ReactToastify.css';
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
-import Navbar from "@/components/ui/navbar";
+import Header from "@/components/ui/header";
 
 
 export const metadata: Metadata = {
@@ -24,9 +24,9 @@ export default function RootLayout({
 				className={''}
 			>
 				<ThemeProvider>
-				<Theme appearance="dark" accentColor={'plum'} grayColor={'olive'} radius={'full'} scaling="95%" >
+				<Theme accentColor={'bronze'} grayColor={'olive'} radius={'full'} scaling="100%" >
 					<ToastProvider>
-						<Navbar />
+						<Header />
 						<Box >
 							{children}
 						</Box>
