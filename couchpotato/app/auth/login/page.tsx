@@ -33,7 +33,7 @@ export default function LoginPage() {
             if (response.status === 200) {
                 toast.success(responseData.message || "Login successful!");
                 setStatus(true);
-                location.replace(profileUrl);
+                location.replace(`${profileUrl}${username}`);
             } else {
                 // Display appropriate error message based on status code
                 const errorMessage = responseData.error || "An error occurred during login";

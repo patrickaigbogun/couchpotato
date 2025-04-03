@@ -8,7 +8,7 @@ export const registerUrl = `${baseUrl}auth/register`
 
 export const baseDashboardUrl = `${baseUrl}dashboard/`;
 
-export const profileUrl = `${baseDashboardUrl}profile/`
+export const profileUrl = `${baseUrl}/profile/`
 
 export const watchUrl = `${baseUrl}watch/`
 
