@@ -35,6 +35,7 @@ const ThemeSwitch = ({ compact = false }) => {
 		<div className={`cursor-pointer ${compact ? "p-1" : "p-2"}`}>
 			<Select.Root
 				value={selectedTheme}
+				size={'3'}
 				onValueChange={(value) => {
 					setSelectedTheme(value);
 					setTheme(value);
