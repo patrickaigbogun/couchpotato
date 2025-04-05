@@ -9,16 +9,16 @@ import { useEffect, useState } from "react";
 
 function DesktopNav() {
 	return (
-		<div className=" flex flex-row border-[1.5px] border-stone-900 rounded-full bg-stone-500/30 backdrop-blur-md py-2 px-4" >
-			<nav className="flex flex-row items-center justify-center">
-				<ul className="flex flex-row justify-center items-center space-x-4">
-					<li className="flex flex-row cursor-pointer text-white transition-colors">
+		<div className=" flex flex-row border-[0.1px] border-stone-900 rounded-full bg-stone-500/30 backdrop-blur-md w-fit h-fit" >
+			<nav className="flex flex-row items-center">
+				<ul className="flex flex-row items-center space-x-4">
+					<li className="flex flex-row cursor-pointer text-white hover:bg-stone-400/30 p-2 rounded-full transition-colors">
 						Tv Shows
 					</li>
-					<li className="flex flex-row cursor-pointer text-white transition-colors">
+					<li className="flex flex-row cursor-pointer text-white hover:bg-stone-400/30 p-2 rounded-full transition-colors">
 						Movies
 					</li>
-					<li className="flex flex-row cursor-pointer text-white transition-colors">
+					<li className="flex flex-row cursor-pointer text-white hover:bg-stone-400/30 p-2 rounded-full transition-colors">
 						Anime
 					</li>
 				</ul>
@@ -28,8 +28,27 @@ function DesktopNav() {
 }
 
 function DesktopHeader() {
+	const [isScrolled, setIsScrolled] = useState(false);
+  
+	useEffect(() => {
+	  const handleScroll = () => {
+		if (window.scrollY > 10) {
+		  setIsScrolled(true);
+		} else {
+		  setIsScrolled(false);
+		}
+	  };
+	  
+	  window.addEventListener('scroll', handleScroll);
+	  return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
 	return (
-		<header className="fixed top-0 w-full z-20 flex flex-row justify-between items-center p-0 bg-transparent" >
+		<header 
+			className={`fixed top-0 w-full z-20 flex flex-row justify-between items-center p-0 transition-all duration-300 ${
+				isScrolled ? 'bg-stone-800/20 backdrop-blur-md' : 'bg-transparent'
+			}`}
+		>
 			<SingleAvatar
 				src={"/couchpotato_icon.png"}
 				alt={"couchpotato logo"}
@@ -49,6 +68,20 @@ function DesktopHeader() {
 
 function MobileHeader() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [isScrolled, setIsScrolled] = useState(false);
+  
+	useEffect(() => {
+	  const handleScroll = () => {
+		if (window.scrollY > 10) {
+		  setIsScrolled(true);
+		} else {
+		  setIsScrolled(false);
+		}
+	  };
+	  
+	  window.addEventListener('scroll', handleScroll);
+	  return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
 
 	return (
 		<header className="flex flex-col w-[90%] mx-auto p-4 bg-stone-500/30 backdrop-blur-md font-bold  rounded-3xl" >
@@ -78,7 +111,7 @@ function MobileHeader() {
 			</div>
 
 			<div
-				className={`transition-all duration-700 ease-in-out overflow-hidden ${mobileMenuOpen ? 'block' : 'hidden'}`}
+				className={`transition-all duration-700 ease-in-out overflow-hidden ${mobileMenuOpen ? 'block mt-4' : 'hidden'}`}
 			>
 				<div className="grid grid-cols-2 gap-4">
 						<button className="py-2 px-4 bg-stone-900/50 rounded-full flex justify-center items-center font-medium hover:bg-stone-700/30 hover:scale-105 transition-all">
@@ -97,52 +130,6 @@ function MobileHeader() {
 	)
 }
 
-function Heaer() {
-	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-	return (
-		<header className="my-9" >
-			<div className="flex flex-row justify-between py-1 px-4 md:px-7 z-30 w-full bg-stone/30 text-gray-500 dark:text-gray-100  overflow-hidden">
-				{/* Logo */}
-				<SingleAvatar
-					src={"/couchpotato_icon.png"}
-					alt={"couchpotato logo"}
-					size={"3"}
-					w={75}
-					h={75}
-				/>
-
-				{/* Desktop Navigation */}
-				<nav className="hidden md:flex flex-row items-center justify-center">
-					<ul className="flex flex-row justify-center items-center space-x-4">
-						<li className="flex flex-row cursor-pointer text-white transition-colors">
-							Tv Shows
-						</li>
-						<li className="flex flex-row cursor-pointer text-white transition-colors">
-							Movies
-						</li>
-						<li className="flex flex-row cursor-pointer text-white transition-colors">
-							Anime
-						</li>
-					</ul>
-				</nav>
-
-				{/* User Controls */}
-				{/* Mobile menu toggle button */}
-
-
-
-			</div>
-
-			{/* Mobile Navigation Menu */}
-			{mobileMenuOpen && (
-				<div className="fixed top-[68px] left-1/2 -translate-x-1/2 w-[85%] rounded-3xl bg-stone-500/30 backdrop-blur-md z-20 md:hidden p-4">
-					
-				</div>
-			)}
-		</header>
-	);
-}
 
 export default function Header() {
 	const [width, setWidth] = useState<number | null>(null);
