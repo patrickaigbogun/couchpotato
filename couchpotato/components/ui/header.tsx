@@ -45,7 +45,7 @@ function DesktopHeader() {
 
 	return (
 		<header 
-			className={`fixed top-0 w-full z-20 flex flex-row justify-between items-center p-0 transition-all duration-300 ${
+			className={`fixed top-0 w-full z-50 flex flex-row justify-between items-center p-0 transition-all duration-300 ${
 				isScrolled ? 'bg-stone-800/20 backdrop-blur-md' : 'bg-transparent'
 			}`}
 		>
@@ -84,7 +84,11 @@ function MobileHeader() {
 	}, []);
 
 	return (
-		<header className="flex flex-col w-[90%] mx-auto p-4 bg-stone-500/30 backdrop-blur-md font-bold  rounded-3xl" >
+		<header 
+			className={`fixed top-0 left-0 right-0 w-full z-50 p-4 transition-all duration-300 font-bold ${
+				isScrolled ? 'bg-stone-800/20 backdrop-blur-md' : 'bg-transparent'
+			}`}
+		>
 			<div className="flex items-center justify-between">
 				<SingleAvatar
 					src={"/couchpotato_icon.png"}
@@ -111,7 +115,7 @@ function MobileHeader() {
 			</div>
 
 			<div
-				className={`transition-all duration-700 ease-in-out overflow-hidden ${mobileMenuOpen ? 'block mt-4' : 'hidden'}`}
+				className={`text-white transition-all duration-700 ease-in-out overflow-hidden ${mobileMenuOpen ? 'block mt-4' : 'hidden'}`}
 			>
 				<div className="grid grid-cols-2 gap-4">
 						<button className="py-2 px-4 bg-stone-900/50 rounded-full flex justify-center items-center font-medium hover:bg-stone-700/30 hover:scale-105 transition-all">
